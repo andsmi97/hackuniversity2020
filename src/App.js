@@ -1,31 +1,19 @@
-import React, { useState } from 'react';
-import './App.css';
-import SearchField from './components/SearchField/Component';
-import importedBooks from './books.json';
-import BooksList from './components/BooksList/Component';
-import Logo from './assets/images/BookStore.svg';
-const App = () => {
-  const [books, setBooks] = useState(importedBooks);
-  const [searchField, setSearchField] = useState('');
+import React, { useState } from "react";
+import "./App.css";
+import Header from "./components/Header/header";
+import Home from "./pages/Home";
+import { Route, Switch } from "react-router-dom";
+import SignIn from "./pages/SignIn/Page";
 
-  const onSearchChange = e => {
-    setSearchField(e.target.value);
-    setBooks(
-      importedBooks.filter(book =>
-        book.name.toLowerCase().includes(e.target.value.toLowerCase())
-      )
-    );
-  };
+const App = () => {
   return (
-    <div>
-      <img src={Logo} width={350} style={{ margin: 24 }} alt="logo" />
-      <SearchField
-        variant="filled"
-        searchChange={onSearchChange}
-        value={searchField}
-      />
-      <BooksList books={books} />
-    </div>
+    <>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/signin" component={SignIn} />
+      </Switch>
+    </>
   );
 };
 

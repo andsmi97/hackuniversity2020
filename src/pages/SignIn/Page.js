@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import { signInWithGoogle } from "../../firebase/utils";
 
-// import { signInWithGoogle } from '../../firebase/utils.js';
-import { useStyles } from './styles';
+import { useStyles } from "./styles";
 
 //TODO Add Error handling
-const SignIn = ({ onSignIn, authInProgress, onGoogleSignIn }) => {
+const SignIn = ({ onSignIn, authInProgress }) => {
   const classes = useStyles();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const changeEmail = e => setEmail(e.target.value);
   const changePassword = e => setPassword(e.target.value);
@@ -23,6 +22,7 @@ const SignIn = ({ onSignIn, authInProgress, onGoogleSignIn }) => {
   return (
     <div className={classes.background}>
       <form className={classes.container} onSubmit={onSignInSubmit}>
+        <h2>Авторизация</h2>
         <TextField
           id="login-input"
           label="Email"
@@ -49,8 +49,7 @@ const SignIn = ({ onSignIn, authInProgress, onGoogleSignIn }) => {
         />
         <div className={classes.buttonsWrapper}>
           <Button
-            component={Link}
-            to={'/'}
+            to={"/"}
             variant="contained"
             color="primary"
             className={classes.button}
@@ -58,7 +57,7 @@ const SignIn = ({ onSignIn, authInProgress, onGoogleSignIn }) => {
             Отмена
           </Button>
           <Button
-            type="submit"
+            onClick={signInWithGoogle}
             variant="contained"
             color="primary"
             className={classes.button}
@@ -68,7 +67,7 @@ const SignIn = ({ onSignIn, authInProgress, onGoogleSignIn }) => {
           </Button>
         </div>
         <Button
-          onClick={onGoogleSignIn}
+          onClick={signInWithGoogle}
           variant="contained"
           color="primary"
           disabled={authInProgress}
