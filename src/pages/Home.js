@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import SearchField from "../components/SearchField/Component";
 import importedBooks from "../books.json";
 import BooksList from "../components/BooksList/Component";
+import AdvancedSearchPanel from "../components/AdvancedSearchPanel/Component";
 const Home = () => {
   const [books, setBooks] = useState(importedBooks);
   const [searchField, setSearchField] = useState("");
@@ -20,6 +21,7 @@ const Home = () => {
         searchChange={onSearchChange}
         value={searchField}
       />
+      <AdvancedSearchPanel />
       <BooksList books={books} />
     </>
   );
