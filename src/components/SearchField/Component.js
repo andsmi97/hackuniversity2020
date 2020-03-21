@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function CustomizedInputBase() {
+const SearchField = ({ searchChange, value }) => {
   const classes = useStyles();
 
   return (
@@ -46,12 +46,10 @@ export default function CustomizedInputBase() {
           className={classes.input}
           placeholder="Искать книги"
           inputProps={{ 'aria-label': 'search books' }}
+          onChange={searchChange}
+          value={value}
         />
-        <IconButton
-          type="submit"
-          className={classes.iconButton}
-          aria-label="search"
-        >
+        <IconButton className={classes.iconButton} aria-label="search">
           <SearchIcon />
         </IconButton>
         <Divider className={classes.divider} orientation="vertical" />
@@ -65,4 +63,5 @@ export default function CustomizedInputBase() {
       </Paper>
     </div>
   );
-}
+};
+export default SearchField;

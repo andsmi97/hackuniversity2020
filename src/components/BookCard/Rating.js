@@ -11,7 +11,6 @@ const useStyles = makeStyles(theme => ({
 
 const BookRating = ({ rating, votersCount }) => {
   const classes = useStyles();
-  console.log(rating);
   return (
     <div className={classes.root}>
       <Rating name="half-rating-read" value={rating} precision={0.1} readOnly />

@@ -25,8 +25,16 @@ const BooksList = ({ books }) => {
     >
       {books.map(({ id, ...rest }) => {
         return (
-          <Grid item xs={12} sm={6} md={4} lg={2} className={classes.test}>
-            <BookCard key={id} id={id} {...rest} />
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={2}
+            className={classes.test}
+            key={id}
+          >
+            <BookCard id={id} {...rest} />
           </Grid>
         );
       })}
