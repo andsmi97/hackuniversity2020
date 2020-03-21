@@ -3,6 +3,7 @@ import './App.css';
 import SearchField from './components/SearchField/Component';
 import importedBooks from './books.json';
 import BooksList from './components/BooksList/Component';
+import AdvancedSearchPanel from './components/AdvancedSearch/Component';
 import Logo from './assets/images/BookStore.svg';
 const App = () => {
   const [books, setBooks] = useState(importedBooks);
@@ -24,6 +25,7 @@ const App = () => {
         searchChange={onSearchChange}
         value={searchField}
       />
+      <AdvancedSearchPanel />
       <BooksList books={books} />
     </div>
   );
