@@ -5,8 +5,8 @@ const create = async (req, res) => {
   try {
     const { field } = req.body;
     const owner = req.user.user_id;
-    const analysis = { LEU, KET, NIT, URO, BIL, PRO, GLU, SG, BLD, pH, owner };
-    const docRef = await db.collection('analyzes').add(analysis);
+    const result = { field };
+    const docRef = await db.collection('crud').add(result);
     return res.sendStatus(201).json(docRef);
   } catch (e) {
     console.error(e);
@@ -18,7 +18,7 @@ const all = async (req, res) => {
   try {
     const owner = req.user.user_id;
     const querySnapshot = await db
-      .collection('analyzes')
+      .collection('crud')
       .where('owner', '==', owner)
       .get();
     const results = querySnapshot.map(doc => ({ ...doc.data(), id: doc.id }));
@@ -36,7 +36,6 @@ const one = async (req, res) => {
     const analysis = await db
       .collection('notes')
       .doc(id)
-      .where('owner', '==', owner)
       .get()
       .data();
 
